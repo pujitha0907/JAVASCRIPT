@@ -1,0 +1,169 @@
+##1. Shortest and Longest Word
+
+<script>
+  function findExtremes(str) {
+    var words = str.split(' '); 
+    var shortest = words[0];
+    var longest = words[0];
+    
+    for (var i = 1; i < words.length; i++) {
+      if (words[i].length < shortest.length) {
+        shortest = words[i];
+      }
+      if (words[i].length > longest.length) {
+        longest = words[i];
+      }
+    }
+    console.log("Shortest: '" + shortest + "'");
+    console.log("Longest: '" + longest + "'");
+  }
+
+  // This line runs the test automatically
+  findExtremes('Web Development Tutorial');
+</script>
+
+
+
+##2. BMI Calculator
+
+<h1>Calculate your Body Mass Index (BMI)!</h1>
+<fieldset>
+  Weight (in kilograms): <input type="text" id="weight" /><br />
+  Height (in meters): <input type="text" id="height" /><br />
+  <button onclick="calculate();">Get BMI!</button>
+</fieldset>
+<p>
+  Your BMI is <span id="score"></span>. <br />
+  Your body type is <span id="type"></span>.
+</p>
+
+<script>
+  function calculate() {
+    var weight = parseFloat(document.getElementById("weight").value);
+    var height = parseFloat(document.getElementById("height").value);
+    var bmi = weight / (height * height);
+    
+    document.getElementById("score").innerHTML = bmi.toFixed(1);
+    
+    var type = "";
+    if (bmi < 18) {
+      type = "Underweight";
+    } else if (bmi >= 18 && bmi <= 25) {
+      type = "Normal";
+    } else if (bmi > 25 && bmi <= 30) {
+      type = "Overweight";
+    } else {
+      type = "Obese";
+    }
+    
+    document.getElementById("type").innerHTML = type;
+  }
+</script>
+
+
+
+##3. Fruit Farm
+
+<h1>Fruit Farm</h1>
+<div>
+  Rows: <input type="text" id="rows" />
+  Columns: <input type="text" id="columns" /> <br />
+  <button onclick="grow();">Plant Garden</button>
+</div>
+<div id="garden"></div>
+
+<script>
+  function grow() {
+    var rows = parseInt(document.getElementById("rows").value);
+    var columns = parseInt(document.getElementById("columns").value);
+    var garden = document.getElementById("garden");
+    
+    garden.innerHTML = ""; 
+    var arr = ["Orange.jpg", "Apple.jpg"]; 
+    
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < columns; c++) {
+        var number = Math.floor(Math.random() * 2); 
+        garden.innerHTML += "<img src='" + arr[number] + "' width='100px' height='100px'>";
+      }
+      garden.innerHTML += "<br>"; 
+    }
+  }
+</script>
+
+
+
+##4. The Currency Convertor
+
+<fieldset> Convert <input type="text" id="data" />
+  <select id="from">
+    <option value="Indian Rupee">Indian Rupee</option>
+    <option value="US Dollar">US Dollar</option>
+  </select>
+  to
+  <select id="to">
+    <option value="US Dollar">US Dollar</option>
+    <option value="Indian Rupee">Indian Rupee</option>
+  </select>
+  <button onclick="convert();">Calculate</button>
+  <span id="answer"></span>
+</fieldset>
+
+<script>
+  function convert() {
+    var data = parseFloat(document.getElementById("data").value);
+    
+    var fromIndex = document.getElementById("from").selectedIndex;
+    var fromValue = document.getElementById("from")[fromIndex].value;
+    
+    var toIndex = document.getElementById("to").selectedIndex;
+    var toValue = document.getElementById("to")[toIndex].value;
+    
+    var result = 0;
+    
+    if (fromValue === "Indian Rupee" && toValue === "US Dollar") {
+      result = data * 0.015;
+    } else if (fromValue === "US Dollar" && toValue === "Indian Rupee") {
+      result = data * 67.12;
+    } else {
+      result = data; 
+    }
+    
+    document.getElementById("answer").innerHTML = result.toFixed(2) + " " + toValue;
+  }
+</script>
+
+
+
+##5. Coin Flip
+
+<h1>Heads or Tails?</h1>
+<div>
+  <img src="heads.jpg" id="coin" /> <br />
+  <button id="flip">Flip!</button>
+</div>
+<p>
+  Heads Total: <span id="num_heads">0</span><br />
+  Tails Total: <span id="num_tails">0</span>
+</p>
+
+<script>
+  var headsTotal = 0;
+  var tailsTotal = 0;
+
+  document.getElementById("flip").addEventListener("click", flipFunction);
+
+  function flipFunction() {
+    var randomNum = Math.floor(Math.random() * 2); 
+    
+    if (randomNum === 0) {
+      document.getElementById("coin").src = "heads.jpg";
+      headsTotal++;
+      document.getElementById("num_heads").innerHTML = headsTotal;
+    } else {
+      document.getElementById("coin").src = "tails.jpg";
+      tailsTotal++;
+      document.getElementById("num_tails").innerHTML = tailsTotal;
+    }
+  }
+</script>
